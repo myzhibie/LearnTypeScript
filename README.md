@@ -17,8 +17,8 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 
 * Boolean  
 
-```
-   let isDone: boolean = true
+```javascript
+     let isDone: boolean = true
 ```  
 
 * Number 
