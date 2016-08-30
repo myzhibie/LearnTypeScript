@@ -39,14 +39,14 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 
 * Array
 
-```
+```javascript
 	let list: number[]=[1,2,3];
 	let list1:Array<number>=[1,2,3];
 ```
 
 * Tuple
 
-```
+```javascript
 	let x:[string,number];
 	x=['123',10];
 	x[2]=14;//ok,you can add some specified elements
@@ -55,7 +55,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 
 * Enum
 
-```
+```javascript
 	enum Color{Red,Green,Blue};
 	let c:Color=Color.Red;
 	console.log(c);//0
@@ -66,7 +66,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 
 * Any
 
-```
+```javascript
 	let notSure:any=4;//unknown type,compiler infer it 
 	notSure="eeree";
 	notSure=123;
@@ -75,7 +75,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 
 * Void
 
-```
+```javascript
 	function nullFunc():void{
   		console.log('nullFunc');
 	} 
@@ -84,7 +84,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 
 * Type assertions
 
-```
+```javascript
 	let someValue:any="this is a string";
 	let strLength: number = (<string>someValue).length;
 	let strLength: number = (someValue as string).length;
@@ -98,7 +98,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 
 * declaration
 
-```
+```javascript
 	 interface LabeledValue{
    		label: string;
 	 }
@@ -110,7 +110,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 ```
 * optional members	 
 
-```
+```javascript
 	 interface SqaureConfig{
 	   	color?: string;
 	   	width?: number;
@@ -118,7 +118,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 ```
 * function members	
 
-``` 
+```javascript 
 	interface SearchFunc{
   		(source:string,subString:string):boolean
 	}
@@ -134,7 +134,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 ```
 * indexable members
 
-```
+```javascript
  	interface StringArray{
   		[index:number]:string
 	}
@@ -144,7 +144,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 ```
 * implement interface
 
-```
+```javascript
 	interface ClockInterface{
   		currentTime: Date;
   		setTime(d: Date): void;
@@ -160,7 +160,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 ```
 * interfaces extend
 
-```
+```javascript
 	interface A{
   		color: string;
 	}
@@ -177,7 +177,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 
 * declaration
 
-```
+```javascript
 	class Greeter {
 		greeting: string;
 		constructor(message: string) {
@@ -192,7 +192,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 ```
 * inheritance
 
-```
+```javascript
 	class Animal {
 	    name: string;
 	    constructor(theName: string) { this.name = theName; }
@@ -227,7 +227,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 * public,protected and private modifiers
 	+ public by default,all memebers are avaliable
 	
-	```
+	```javascript
 		class Animal {
 		    public name: string;
 		    public constructor(theName: string) { this.name = theName; }
@@ -238,7 +238,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 	```
 	+ private,it cannot be accessed from outside of its containing class
 	
-	```
+	```javascript
 		class Animal {
 	    	private name: string;
 	    	constructor(theName: string) { this.name = theName; }
@@ -247,7 +247,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 	```
 	+ protected,members declared protected can also be accessed by instances of deriving classes
 	
-	```
+	```javascript
 		class Person {
 		    protected name: string;
 		    constructor(name: string) { this.name = name; }
@@ -272,7 +272,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 	```
 * Accessors
 	
-	```
+	```javascript
 		let passcode = "secret passcode";
 
 		class Employee {
@@ -294,7 +294,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 	```
 * Static Properties
 
-	```
+	```javascript
 	class Grid {
 		static origin = {x: 0, y: 0};
 		calculateDistanceFromOrigin(point: {x: number; y: number;}) {
@@ -308,7 +308,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 ```
 * Abstract Classes
 
-```
+```javascript
 	abstract class Department {
 
 	    constructor(public name: string) {
@@ -341,7 +341,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 
 * overloads and function types
 
- ```
+ ```javascript
  	function pickCard(x: {suit: string; card: number; }[]): number;
 	function pickCard(x: number): {suit: string; card: number; };
 	function pickCard(x): any {
@@ -363,7 +363,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 
 * Generic Types
 
-	```
+	```javascript
 		interface GenericIdentityFn {
 		    <T>(arg: T): T;
 		}
@@ -377,7 +377,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
  	
 * Generic Classes
 
- 	```
+ 	```javascript
 		 class GenericNumber<T> {
 		    zeroValue: T;
 		    add: (x: T, y: T) => T;
@@ -393,7 +393,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 
 * `Union` Types,A union type describes a value that can be one of several types. We use the vertical bar (|) to separate each type, so number | string | boolean is the type of a value that can be a number, a string, or a boolean.it has members that both A and B have.
 
-	```
+	```javascript
 		interface Bird {
 		    fly();
 		    layEggs();
@@ -415,7 +415,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 	```
 * `Intersection` Types,An intersection type, Person & Serializable & Loggable, for example, is a Person and Serializable and Loggable. That means an object of this type will have all members of all three types.
  
- ```
+ ```javascript
 	function extend<T, U>(first: T, second: U): T & U {
 		let result = <T & U>{};
 		for (let id in first) {
@@ -447,7 +447,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
  
  * Type Aliases,Type aliases create a new name for a type.
  
- ```
+ ```javascript
 	type Name = string;
 	type NameResolver = () => string;
 	type NameOrResolver = Name | NameResolver;
@@ -477,7 +477,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 * `import` and `export` are same as ES6's usage.
 * export = and import = require(),TypeScript supports export = to model the traditional CommonJS and AMD workflow.The export = syntax specifies a single object that is exported from the module. This can be a class, interface, namespace, function, or enum.When importing a module using export =, TypeScript-specific import let = require("module") must be used to import the module.
 
-	```
+	```javascript
 		//ZipCodeValidator.ts
 		let numberRegexp = /^[0-9]+$/;
 		class ZipCodeValidator {
@@ -506,7 +506,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 	
 * declaration
 
-  ```
+  ```javascript
   	namespace Validation {
 	    export interface StringValidator {
 	        isAcceptable(s: string): boolean;
@@ -545,7 +545,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
   ```
 * namespaces acroll multiple files
 
-```
+```javascript
 	//Validation.ts
 	
 	namespace Validation {
@@ -604,7 +604,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 
 * Merging Interfaces
 
-```
+```javascript
 	interface Cloner {
 	    clone(animal: Animal): Animal;
 	}
@@ -627,7 +627,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 ```
 * Merging Namespaces
 
-```
+```javascript
 	namespace Animals {
     	export class Zebra { }
 	}
@@ -646,7 +646,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 ```
 * Merging Namespaces with Classes
 
-```
+```javascript
 	class Album {
 	    label: Album.AlbumLabel;
 	}
@@ -656,7 +656,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 ```
 * Merging Namespaces with Functions
 
-```
+```javascript
 	function buildLabel(name: string): string {
 		return buildLabel.prefix + name + buildLabel.suffix;
 	}
@@ -670,7 +670,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 
 * Merging Namespaces with enum
 
-```
+```javascript
 	enum Color {
 		red = 1,
 		green = 2,
@@ -706,7 +706,7 @@ index.ts
 
 index.js
 
-```
+```javascript
 	var w = widget(32, 16);
 	var y = new widget("sprocket");
 	// w and y are both widgets
@@ -717,7 +717,7 @@ index.js
 
 typings.d.ts
 
-```
+```javascript
 	interface Widget {
 	   sprock(): void;
 	}
@@ -734,7 +734,7 @@ Decorators provide a way to add both annotations and a meta-programming syntax f
 
 tsconfig.json:
 
-```
+```json
 	{
 	    "compilerOptions": {
 	        "target": "ES5",
@@ -744,7 +744,7 @@ tsconfig.json:
 ```
 A Decorator is a special kind of declaration that can be attached to a class declaration, method, accessor, property, or parameter. Decorators use the form @expression, where expression must evaluate to a function that will be called at runtime with information about the decorated declaration.
 
-```
+```javascript
 	function f() {
 	    console.log("f(): evaluated");
 	    return function (target, propertyKey: string, descriptor: PropertyDescriptor) {
@@ -767,7 +767,7 @@ A Decorator is a special kind of declaration that can be attached to a class dec
 ```
 * Class Decorators
 
-```
+```javascript
 	@sealed
 	class Greeter {
 	    greeting: string;
@@ -786,7 +786,7 @@ A Decorator is a special kind of declaration that can be attached to a class dec
 ```
 * Method Decorators
 	
-```
+```javascript
 	class Greeter {
 	    greeting: string;
 	    constructor(message: string) {
@@ -810,7 +810,7 @@ A Decorator is a special kind of declaration that can be attached to a class dec
 ```
 * Accessor Decorators
 
-```
+```javascript
 	class Point {
 	    private _x: number;
 	    private _y: number;
@@ -834,7 +834,7 @@ A Decorator is a special kind of declaration that can be attached to a class dec
 ```
 * Property Decorators
 
-```
+```javascript
 	class Greeter {
 	    @format("Hello, %s")
 	    greeting: string;
@@ -861,7 +861,7 @@ A Decorator is a special kind of declaration that can be attached to a class dec
 ```
 * Parameter Decorators
 
-```
+```javascript
 	class Greeter {
 	    greeting: string;
 	
