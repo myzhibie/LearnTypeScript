@@ -30,7 +30,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 
 * String  
 
-```javascript  
+```
 	let color: string = 'red';  
 	color = 'green';
 ```  
