@@ -20,26 +20,30 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 ```
    let isDone: boolean = true
 ```  
+
 * Number 
 
-```let decimal: number = 6; 
-   let hex: number = 0xf00d;
-   let binary: number = 0b1010;  
-   let octal: number = 0o744;
+```javascript 
+     let decimal: number = 6; 
+     let hex: number = 0xf00d;
+     let binary: number = 0b1010;  
+     let octal: number = 0o744;
 ```
 
 * String  
 
-```
+```javascript  
 	let color: string = 'red';  
 	color = 'green';
-```  
+``` 
+
 * Array
 
 ```
 	let list: number[]=[1,2,3];
 	let list1:Array<number>=[1,2,3];
 ```
+
 * Tuple
 
 ```
@@ -48,6 +52,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 	x[2]=14;//ok,you can add some specified elements
 	x[3]=false;//error,incorrect type   
 ```
+
 * Enum
 
 ```
@@ -67,6 +72,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 	notSure=123;
 	let listNotSure:any[]=[1,true,'free'];
 ```
+
 * Void
 
 ```
@@ -75,6 +81,7 @@ Learning  TypeScript from scratch is not an easy task for some beginners even if
 	} 
 	nullFunc();//return value is void
 ```
+
 * Type assertions
 
 ```
