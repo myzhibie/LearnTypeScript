@@ -38,8 +38,13 @@ class Store<T>{
   subscribe(listener: ListenerCallback): UnsubscribeCallback {
     this._listeners.push(listener);
     return () => {
-      this._listeners = this._listeners.filter(l => l !== listener);
-    }
+      // Performance optimization: mutate array in-place using indexOf and splice
+      // to avoid allocating a new array on every unsubscribe call.
+      const index = this._listeners.indexOf(listener);
+      if (index !== -1) {
+        this._listeners.splice(index, 1);
+      }
+    };
   }
 
 }
