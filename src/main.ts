@@ -22,7 +22,9 @@ let reducer: Reducer<number> = (state: number, action: Action) => {
 
 class Store<T>{
   private _state: T;
-  private _listeners: ListenerCallback[] = [];
+  // Performance optimization: Using a Set provides O(1) time complexity for listener addition and removal,
+  // preventing O(N) array filter operations and avoiding array allocation/garbage collection overhead on unsubscribe.
+  private _listeners: Set<ListenerCallback> = new Set<ListenerCallback>();
   constructor(
     private reducer: Reducer<T>,
     initialState: T) {
@@ -36,9 +38,9 @@ class Store<T>{
     this._listeners.forEach((listener: ListenerCallback) => listener());
   }
   subscribe(listener: ListenerCallback): UnsubscribeCallback {
-    this._listeners.push(listener);
+    this._listeners.add(listener);
     return () => {
-      this._listeners = this._listeners.filter(l => l !== listener);
+      this._listeners.delete(listener);
     }
   }
 
