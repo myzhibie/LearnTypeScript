@@ -33,13 +33,23 @@ class Store<T>{
   }
   dispatch(action: Action): void {
     this._state = this.reducer(this._state, action);
-    this._listeners.forEach((listener: ListenerCallback) => listener());
+    // Take a snapshot copy of listeners during dispatch to allow safe iteration
+    // even if subscribers unsubscribe or subscribe during notification callback execution.
+    const listeners = this._listeners.slice();
+    for (let i = 0; i < listeners.length; i++) {
+      listeners[i]();
+    }
   }
   subscribe(listener: ListenerCallback): UnsubscribeCallback {
     this._listeners.push(listener);
     return () => {
-      this._listeners = this._listeners.filter(l => l !== listener);
-    }
+      // Optimization: Use indexOf and splice for in-place removal instead of filter(),
+      // avoiding unnecessary O(N) array reallocation on unsubscribe.
+      const index = this._listeners.indexOf(listener);
+      if (index !== -1) {
+        this._listeners.splice(index, 1);
+      }
+    };
   }
 
 }
