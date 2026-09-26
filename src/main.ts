@@ -33,13 +33,26 @@ class Store<T>{
   }
   dispatch(action: Action): void {
     this._state = this.reducer(this._state, action);
-    this._listeners.forEach((listener: ListenerCallback) => listener());
+    // Slice snapshot prevents skipping listeners if a listener unsubscribes during dispatch.
+    // Indexed for-loop avoids callback allocation per dispatch iteration.
+    const listeners = this._listeners.slice();
+    for (let i = 0; i < listeners.length; i++) {
+      listeners[i]();
+    }
   }
   subscribe(listener: ListenerCallback): UnsubscribeCallback {
     this._listeners.push(listener);
+    let isSubscribed = true;
     return () => {
-      this._listeners = this._listeners.filter(l => l !== listener);
-    }
+      // Performance Optimization: Guard against redundant unsubscriptions and avoid creating a new array.
+      // Modifying the array in-place using indexOf and splice eliminates O(N) array reallocation/garbage collection overhead.
+      if (!isSubscribed) return;
+      isSubscribed = false;
+      const index = this._listeners.indexOf(listener);
+      if (index !== -1) {
+        this._listeners.splice(index, 1);
+      }
+    };
   }
 
 }
