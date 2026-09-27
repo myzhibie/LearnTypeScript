@@ -22,7 +22,9 @@ let reducer: Reducer<number> = (state: number, action: Action) => {
 
 class Store<T>{
   private _state: T;
-  private _listeners: ListenerCallback[] = [];
+  // Bolt Optimization: Use Set<ListenerCallback> for O(1) subscriptions and unsubscriptions
+  // without creating temporary array allocations on every unsubscribe.
+  private _listeners: Set<ListenerCallback> = new Set();
   constructor(
     private reducer: Reducer<T>,
     initialState: T) {
@@ -36,10 +38,10 @@ class Store<T>{
     this._listeners.forEach((listener: ListenerCallback) => listener());
   }
   subscribe(listener: ListenerCallback): UnsubscribeCallback {
-    this._listeners.push(listener);
+    this._listeners.add(listener);
     return () => {
-      this._listeners = this._listeners.filter(l => l !== listener);
-    }
+      this._listeners.delete(listener);
+    };
   }
 
 }
