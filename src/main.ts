@@ -22,7 +22,9 @@ let reducer: Reducer<number> = (state: number, action: Action) => {
 
 class Store<T>{
   private _state: T;
-  private _listeners: ListenerCallback[] = [];
+  // Bolt optimization: Use a Set for listener management instead of Array.
+  // This improves subscription adding/removal from O(N) linear filter with array allocation to O(1) set operations.
+  private _listeners: Set<ListenerCallback> = new Set<ListenerCallback>();
   constructor(
     private reducer: Reducer<T>,
     initialState: T) {
@@ -36,10 +38,10 @@ class Store<T>{
     this._listeners.forEach((listener: ListenerCallback) => listener());
   }
   subscribe(listener: ListenerCallback): UnsubscribeCallback {
-    this._listeners.push(listener);
+    this._listeners.add(listener);
     return () => {
-      this._listeners = this._listeners.filter(l => l !== listener);
-    }
+      this._listeners.delete(listener);
+    };
   }
 
 }
